@@ -15,6 +15,11 @@ public class CardModel
         Suit = suit;
     }
 
+    public bool isEqual(CardModel card)
+    {
+        return Value == card.Value && Suit == card.Suit;
+    }
+
     public override string ToString() => $"{Value} of {Suit}";
 
 }
