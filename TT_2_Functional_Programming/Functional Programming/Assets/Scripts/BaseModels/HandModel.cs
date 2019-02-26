@@ -6,15 +6,17 @@ using System.Linq;
 
 public class HandModel 
 {
-    public List<CardModel> Cards { get; }
+    private readonly List<CardModel> cards = new List<CardModel>();
+
+    // to ensure imutability 
+    public IEnumerable<CardModel> Cards { get { return cards; } }
 
     public HandModel()
     {
-        Cards = new List<CardModel>();
     }
 
     public void Draw(CardModel card)
     {
-        Cards.Add(card);
+        cards.Add(card);
     }
 }
