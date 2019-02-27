@@ -26,12 +26,14 @@ public class Hand
         cards.Add(card);
     }
 
-    public void ClaimForCards(int numberOfCards = 1)
+    // higher order function 
+    public void ClaimForCards(Action<int>claim, int numberOfCards = 1)
     {
-        // implementation needed
+        if (claim == null) return;
+        claim(numberOfCards);
     }
 
-    public void Remove(Card card)
+    public void RemoveCardFromHand(Card card)
     {
         if (cards.Count <= 0) return;
         cards.Remove(card);
