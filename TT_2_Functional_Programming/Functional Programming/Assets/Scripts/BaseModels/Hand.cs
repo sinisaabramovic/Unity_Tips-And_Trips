@@ -9,6 +9,7 @@ public class Hand
 {
     private readonly List<Card> cards = new List<Card>();
 
+    #region Public methods
     // to ensure imutability 
     public IEnumerable<Card> Cards { get { return cards; } }
 
@@ -23,6 +24,17 @@ public class Hand
         // ensure early exit if card is in the list
         if (isCardInList(card)) return;
         cards.Add(card);
+    }
+
+    public void ClaimForCards(int numberOfCards = 1)
+    {
+        // implementation needed
+    }
+
+    public void Remove(Card card)
+    {
+        if (cards.Count <= 0) return;
+        cards.Remove(card);
     }
 
     public Card HighCard()
@@ -47,7 +59,9 @@ public class Hand
 
         return HandRank.HighCard;
     }
+    #endregion
 
+    #region state conditions methods
     private bool HasFlush()
     {
         return cards.All((c) => {
@@ -97,7 +111,9 @@ public class Hand
     {
         return HasStraight() && HasFlush();
     }
+    #endregion
 
+    #region Compare methods
     private bool isCardInList(Card card)
     {
         foreach(Card cardModel in cards)
@@ -137,4 +153,5 @@ public class Hand
                 .Zip(cards.OrderBy(card => card.Value).Skip(1), (n, next) => n.Value + 1 == next.Value)
                 .All(value => value /* true */ );
     }
+    #endregion
 }
