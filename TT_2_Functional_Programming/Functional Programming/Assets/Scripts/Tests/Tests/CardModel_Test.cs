@@ -8,7 +8,7 @@ public class CardModel_Test {
     [Test]
     public void CardModel_TestSimplePasses() {
         // Use the Assert class to test conditions.
-        CardModel cardModel = new CardModel(CardValue.Ace, CardSuit.Clubs);
+        Card cardModel = new Card(CardValue.Ace, CardSuit.Clubs);
 
         Assert.AreEqual(CardSuit.Clubs, cardModel.Suit);
         Assert.AreEqual(CardValue.Ace, cardModel.Value);
@@ -18,7 +18,7 @@ public class CardModel_Test {
     [Test]
     public void CardModel_CanDescribeACard()
     {
-        CardModel cardModel = new CardModel(CardValue.Ace, CardSuit.Clubs);
+        Card cardModel = new Card(CardValue.Ace, CardSuit.Clubs);
 
         Assert.AreEqual("Ace of Clubs", cardModel.ToString());
     }
@@ -26,8 +26,8 @@ public class CardModel_Test {
     [Test]
     public void IsEqualTest()
     {
-        CardModel cardModel_1 = new CardModel(CardValue.Ace, CardSuit.Clubs);
-        CardModel cardModel_2 = new CardModel(CardValue.Ace, CardSuit.Clubs);
+        Card cardModel_1 = new Card(CardValue.Ace, CardSuit.Clubs);
+        Card cardModel_2 = new Card(CardValue.Ace, CardSuit.Clubs);
 
         Assert.True(cardModel_1.isEqual(cardModel_2), "Two card objects should be equal!");
     }
@@ -35,8 +35,8 @@ public class CardModel_Test {
     [Test]
     public void IsNotEqualTest()
     {
-        CardModel cardModel_1 = new CardModel(CardValue.Ace, CardSuit.Clubs);
-        CardModel cardModel_2 = new CardModel(CardValue.Ace, CardSuit.Hearts);
+        Card cardModel_1 = new Card(CardValue.Ace, CardSuit.Clubs);
+        Card cardModel_2 = new Card(CardValue.Ace, CardSuit.Hearts);
 
         Assert.False(cardModel_1.isEqual(cardModel_2), "Two card objects should not be equal!");
     }

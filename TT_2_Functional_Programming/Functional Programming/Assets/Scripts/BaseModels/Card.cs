@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class CardModel  
+public class Card  
 {
     // only expose getter to ensure immutability
     public CardValue Value { get; }
     public CardSuit Suit { get; }
 
-    public CardModel(CardValue value, CardSuit suit)
+    public Card(CardValue value, CardSuit suit)
     {
         Value = value;
         Suit = suit;
     }
 
-    public bool isEqual(CardModel card)
+    public bool isEqual(Card card)
     {
         return Value == card.Value && Suit == card.Suit;
     }
