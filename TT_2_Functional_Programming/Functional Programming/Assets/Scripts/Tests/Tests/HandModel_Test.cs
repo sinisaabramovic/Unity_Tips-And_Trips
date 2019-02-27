@@ -139,7 +139,7 @@ public class HandModel_Test {
     public void CanScoreTwoPairs()
     {
         Hand hand = new Hand();
-        hand.Draw(new Card(CardValue.Two, CardSuit.Hearts));
+        hand.Draw(new Card(CardValue.Ten, CardSuit.Hearts));
         hand.Draw(new Card(CardValue.Jack, CardSuit.Clubs));
         hand.Draw(new Card(CardValue.Queen, CardSuit.Hearts));
         hand.Draw(new Card(CardValue.Ten, CardSuit.Spades));

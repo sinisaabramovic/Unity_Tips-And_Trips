@@ -14,6 +14,8 @@ public class Hand
 
     public Hand()
     {
+        // base constructor 
+        // no implementations
     }
 
     public void Draw(Card card)
@@ -68,7 +70,7 @@ public class Hand
     private bool HasTwoPairs()
     {
        
-        return HasPair() && HasFlush();
+        return GetTwoPairKindAndQuantites(cards);
     }
 
     private bool HasThreeOfAKind()
@@ -119,6 +121,14 @@ public class Hand
         }
 
         return dict;
+    }
+
+    private bool GetTwoPairKindAndQuantites(IEnumerable<Card> cards)
+    {
+
+        return cards.GroupBy(card => card.Value)
+                      .Count(group => group.Count() >= 2) == 2;
+
     }
 
     private bool HasStraight()
