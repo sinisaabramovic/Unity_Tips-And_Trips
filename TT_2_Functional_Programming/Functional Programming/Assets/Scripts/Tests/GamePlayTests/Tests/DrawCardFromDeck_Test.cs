@@ -4,6 +4,8 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using System.Runtime.InteropServices;
 
 public class DrawCardFromDeck_Test {
 
@@ -14,7 +16,12 @@ public class DrawCardFromDeck_Test {
         Deck deck = new Deck();
         Hand hand = new Hand();
 
+        WeakReference weakDeck = new WeakReference(deck, false);
+        WeakReference weakDand = new WeakReference(hand, false);
+
         hand.ClaimForCards((count) => {
+            // check is refrence alive
+            if (!weakDeck.IsAlive || !weakDand.IsAlive) return;
 
             List<Card> cards = new List<Card>();
             cards = deck.ThrowCards(count);
