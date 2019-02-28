@@ -16,12 +16,12 @@ public class DrawCardFromDeck_Test {
         Deck deck = new Deck();
         Hand hand = new Hand();
 
-        WeakReference weakDeck = new WeakReference(deck, false);
-        WeakReference weakDand = new WeakReference(hand, false);
+        WeakReference weakDeck = new WeakReference(deck, true);
+        WeakReference weakHand = new WeakReference(hand, true);
 
         hand.ClaimForCards((count) => {
             // check is refrence alive
-            if (!weakDeck.IsAlive || !weakDand.IsAlive) return;
+            if (!weakDeck.IsAlive || !weakHand.IsAlive) return;
 
             List<Card> cards = new List<Card>();
             cards = deck.ThrowCards(count);
@@ -30,12 +30,22 @@ public class DrawCardFromDeck_Test {
             {
                 hand.Draw(card);
             }
-
+            // TODO
+            // This is wierd
+            // for some reason GC doesnt collect this!?
+            //hand = null;
         }, numberOFClaimedCards);
 
-        Debug.Log(hand.ToString());
+        GC.Collect();
+        if (weakHand.IsAlive)
+        {
+            Debug.Log(hand.ToString());
 
-        Assert.AreEqual(hand.Cards.Count(), numberOFClaimedCards);
+            Assert.AreEqual(hand.Cards.Count(), numberOFClaimedCards);
+            return;
+        }
+
+        Assert.Fail("reference error!");
     }
 
     // A UnityTest behaves like a coroutine in PlayMode
