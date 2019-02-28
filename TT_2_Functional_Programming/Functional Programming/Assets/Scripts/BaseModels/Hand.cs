@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Linq;
 using Realtime.Messaging.Internal;
+using System.Text;
 
 public class Hand 
 {
@@ -17,6 +18,34 @@ public class Hand
     {
         // base constructor 
         // no implementations
+    }
+
+    public HandRank GetHandRank()
+    {
+        // return early
+        if (HasRoyalFlush()) return HandRank.RoyalFlush;
+        if (HasStraightFlush()) return HandRank.StraightFlush;
+        if (HasFourOfAKind()) return HandRank.FourOfAKind;
+        if (HasFullHouse()) return HandRank.FullHouse;
+        if (HasFlush()) return HandRank.Flush;
+        if (HasStraight()) return HandRank.Straight;
+        if (HasThreeOfAKind()) return HandRank.ThreeOfAKind;
+        if (HasTwoPairs()) return HandRank.TwoPair;
+        if (HasPair()) return HandRank.Pair;
+
+        return HandRank.HighCard;
+    }
+
+    public string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        foreach(Card card in cards)
+        {
+            sb.Append(" | " + card.ToString() + " | ");
+        }
+
+        return sb.ToString();
     }
 
     public void Draw(Card card)
@@ -46,21 +75,6 @@ public class Hand
         });
     }
 
-    public HandRank GetHandRank()
-    {
-        // return early
-        if (HasRoyalFlush()) return HandRank.RoyalFlush;
-        if (HasStraightFlush()) return HandRank.StraightFlush;
-        if (HasFourOfAKind()) return HandRank.FourOfAKind;
-        if (HasFullHouse()) return HandRank.FullHouse;
-        if (HasFlush()) return HandRank.Flush;
-        if (HasStraight()) return HandRank.Straight;
-        if (HasThreeOfAKind()) return HandRank.ThreeOfAKind;
-        if (HasTwoPairs()) return HandRank.TwoPair;
-        if (HasPair()) return HandRank.Pair;
-
-        return HandRank.HighCard;
-    }
     #endregion
 
     #region state conditions methods

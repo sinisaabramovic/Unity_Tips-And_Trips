@@ -27,6 +27,30 @@ public class Deck
         return randomizedCards.ToList();
     }
 
+    public Card ThrowCard()
+    {
+        if (cards.Count() <= 0) return null;
+
+        Card card = cards.Last();
+        cards.Remove(card);
+
+        return card;
+    }
+
+    public List<Card> ThrowCards(int numberOfCards)
+    {
+        if (cards.Count() < numberOfCards &&  numberOfCards > 0) return null;
+
+        List<Card> throwableCards = new List<Card>();
+
+       for(int i=0; i < numberOfCards; i++)
+        {
+            throwableCards.Add(ThrowCard());
+        }
+
+        return throwableCards;
+    }
+
     private void InitializeDeck()
     {
         // Set of Clubs
