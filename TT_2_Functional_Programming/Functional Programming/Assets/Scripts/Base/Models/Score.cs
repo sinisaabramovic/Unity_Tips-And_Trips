@@ -29,29 +29,34 @@ public class Score
         }
     }
 
-    public static int GetScore(HandRank forRank)
+    public int GetScore(HandRank forRank)
     {
         return scoreSet[forRank] * multiplier;
     }
 
-    public static void SetScore(int value)
+    public void SetScore(int value)
     {
         score += value;
     }
 
-    public static void ResetScore()
+    public int GetCurrentScore()
+    {
+        return score;
+    }
+
+    public void ResetScore()
     {
         score = Constants.SharedInstance.ResetScoreValue;
     }
 
-    public static bool SetMultiplierForNetAmmount(int betAmmountValue)
+    public bool SetMultiplierForBetAmmount(int betAmmountValue)
     {
         if (betAmmountValue > Constants.SharedInstance.MaximumBetAmount && betAmmountValue < Constants.SharedInstance.MinumumBetAmount) return false;
         multiplier = betAmmountValue;
         return true;
     }
 
-    public static string ToString()
+    public string ToString()
     {
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -59,24 +64,25 @@ public class Score
 
         foreach (KeyValuePair<HandRank, int> entry in scoreSet)
         {
-            stringBuilder.Append("|" + entry.Key.ToString() + " = " + entry.Value.ToString() + "|");
+            int value = entry.Value * multiplier;
+            stringBuilder.Append("|" + entry.Key.ToString() + " = " + value.ToString() + "|");
         }
 
         return stringBuilder.ToString();
     }
 
     private static void InitScoreSets()
-    {
-        scoreSet.Add(HandRank.Flush, (int)HandRank.Flush);
+    {    
+        scoreSet.Add(HandRank.RoyalFlush, (int)HandRank.RoyalFlush);
+        scoreSet.Add(HandRank.StraightFlush, (int)HandRank.StraightFlush);
         scoreSet.Add(HandRank.FourOfAKind, (int)HandRank.FourOfAKind);
         scoreSet.Add(HandRank.FullHouse, (int)HandRank.FullHouse);
-        scoreSet.Add(HandRank.HighCard, Constants.SharedInstance.NullValue);
-        scoreSet.Add(HandRank.Pair, (int)HandRank.Pair);
-        scoreSet.Add(HandRank.RoyalFlush, (int)HandRank.RoyalFlush);
+        scoreSet.Add(HandRank.Flush, (int)HandRank.Flush);
         scoreSet.Add(HandRank.Straight, (int)HandRank.Straight);
-        scoreSet.Add(HandRank.StraightFlush, (int)HandRank.StraightFlush);
         scoreSet.Add(HandRank.ThreeOfAKind, (int)HandRank.ThreeOfAKind);
         scoreSet.Add(HandRank.TwoPair, (int)HandRank.TwoPair);
+        scoreSet.Add(HandRank.Pair, (int)HandRank.Pair);
+        scoreSet.Add(HandRank.HighCard, Constants.SharedInstance.NullValue);
     }
 
     private Score() { }

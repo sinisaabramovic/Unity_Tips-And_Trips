@@ -9,7 +9,7 @@ public interface IConstants
         get;      
     }
 
-    int MaximumNumberOfCardsInDeck
+    int MaximumNumberOfCardsInHand
     {
         get;
     }

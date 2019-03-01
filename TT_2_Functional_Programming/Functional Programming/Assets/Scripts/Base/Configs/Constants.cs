@@ -10,7 +10,7 @@ public class Constants : IConstants
 
     private int totalNumberOfCardsInDeck = 52;
     private int maximumNumberOfCardsInHand = 5;
-    private int maximumBetAmount = 10;
+    private int maximumBetAmount = 5;
     private int minimumBetAmount = 1;
     private int resetScoreValue = 0;
     private int nullValue = 0;
@@ -32,7 +32,7 @@ public class Constants : IConstants
     }
 
     public int TotalNumberOfCardsInDeck { get { return totalNumberOfCardsInDeck; } }  
-    public int MaximumNumberOfCardsInDeck { get { return maximumNumberOfCardsInHand; } }
+    public int MaximumNumberOfCardsInHand { get { return maximumNumberOfCardsInHand; } }
     public int MaximumBetAmount { get { return maximumBetAmount; } }
     public int MinumumBetAmount { get { return minimumBetAmount; } }
     public int ResetScoreValue { get { return resetScoreValue; } }

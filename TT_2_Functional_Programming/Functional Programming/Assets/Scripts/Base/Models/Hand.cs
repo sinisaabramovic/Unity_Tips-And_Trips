@@ -68,6 +68,11 @@ public class Hand
         cards.Remove(card);
     }
 
+    public void RemoveAllCardsFromHand()
+    {
+        cards.Clear();
+    }
+
     public Card HighCard()
     {
         return cards.Aggregate((highCard, nextCard) => {
