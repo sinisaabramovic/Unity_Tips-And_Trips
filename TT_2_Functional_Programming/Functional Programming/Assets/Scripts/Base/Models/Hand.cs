@@ -6,7 +6,7 @@ using System.Linq;
 using Realtime.Messaging.Internal;
 using System.Text;
 
-public class Hand 
+public class Hand : IHand
 {
     private readonly List<Card> cards = new List<Card>();
 
@@ -66,6 +66,11 @@ public class Hand
     {
         if (cards.Count <= 0) return;
         cards.Remove(card);
+    }
+
+    public void RemoveAllCardsFromHand()
+    {
+        cards.Clear();
     }
 
     public Card HighCard()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Card  
+public class Card : ICard 
 {
     // only expose getter to ensure immutability
     public CardValue Value { get; }

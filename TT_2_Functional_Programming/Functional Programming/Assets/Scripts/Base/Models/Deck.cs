@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using Realtime.Messaging.Internal;
 
-public class Deck  
+public class Deck : IDeck
 {
 
     private readonly List<Card> cards = new List<Card>();
@@ -51,7 +51,7 @@ public class Deck
         return throwableCards;
     }
 
-    private void InitializeDeck()
+    public void InitializeDeck()
     {
         // Set of Clubs
         cards.Add(new Card(CardValue.Two, CardSuit.Clubs));
