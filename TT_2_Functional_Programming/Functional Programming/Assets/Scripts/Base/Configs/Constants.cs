@@ -14,9 +14,7 @@ public class Constants : IConstants
     private int minimumBetAmount = 1;
     private int resetScoreValue = 0;
     private int nullValue = 0;
-    private int baseMultiplierValue = 1;
-
-    private Constants() { }
+    private int baseMultiplierValue = 1;       
 
     public static Constants SharedInstance
     {
@@ -40,4 +38,6 @@ public class Constants : IConstants
     public int ResetScoreValue { get { return resetScoreValue; } }
     public int NullValue { get { return nullValue; } }
     public int BaseMultiplierValue { get { return baseMultiplierValue; } }
+
+    private Constants() { }
 }

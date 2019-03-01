@@ -1,24 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class HighCardStrategy : IScoreStrategy
-{
-    private int scoreValue = 0;
-
-    public int ScoreValue
-    {
-        get
-        {
-            return scoreValue;
-        }
-    }
-
-    public int GetScore()
-    {
-        return scoreValue;
-    }
-}
+using System.Text;
 
 public class Score
 {
@@ -28,8 +11,6 @@ public class Score
     private static Dictionary<HandRank, int> scoreSet;
     private static int multiplier = Constants.SharedInstance.BaseMultiplierValue;
     private static int score = Constants.SharedInstance.NullValue;
-
-    private Score() { }
 
     public static Score SharedInstance
     {
@@ -63,11 +44,25 @@ public class Score
         score = Constants.SharedInstance.ResetScoreValue;
     }
 
-    public static bool SetMultiplier(int value)
+    public static bool SetMultiplierForNetAmmount(int betAmmountValue)
     {
-        if (value > Constants.SharedInstance.MaximumBetAmount && value < Constants.SharedInstance.MinumumBetAmount) return false;
-        multiplier = value;
+        if (betAmmountValue > Constants.SharedInstance.MaximumBetAmount && betAmmountValue < Constants.SharedInstance.MinumumBetAmount) return false;
+        multiplier = betAmmountValue;
         return true;
+    }
+
+    public static string ToString()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        if (scoreSet == null) return "ERROR EMPTY SET!";
+
+        foreach (KeyValuePair<HandRank, int> entry in scoreSet)
+        {
+            stringBuilder.Append("|" + entry.Key.ToString() + " = " + entry.Value.ToString() + "|");
+        }
+
+        return stringBuilder.ToString();
     }
 
     private static void InitScoreSets()
@@ -83,5 +78,7 @@ public class Score
         scoreSet.Add(HandRank.ThreeOfAKind, (int)HandRank.ThreeOfAKind);
         scoreSet.Add(HandRank.TwoPair, (int)HandRank.TwoPair);
     }
+
+    private Score() { }
 
 }
