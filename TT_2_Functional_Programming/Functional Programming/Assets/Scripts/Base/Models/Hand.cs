@@ -6,7 +6,7 @@ using System.Linq;
 using Realtime.Messaging.Internal;
 using System.Text;
 
-public class Hand 
+public class Hand : IHand
 {
     private readonly List<Card> cards = new List<Card>();
 

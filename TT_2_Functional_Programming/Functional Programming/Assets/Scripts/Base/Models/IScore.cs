@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IScoreStrategy 
+public interface IScore 
 {
-    int ScoreValue
-    {
-        get;
-    }
-    int GetScore();
-
+    int GetScoreInfoForARank(HandRank forRank);
+    void SetScore(int value);
+    int GetCurrentScore();
+    void ResetScore();
+    bool SetMultiplierForBetAmmount(int betAmmountValue);
+    string ToString();
 }

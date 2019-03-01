@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 
-public class Score
+public class Score : IScore
 {
     private static Score sharedInstance = null;
     private static readonly object padlockInstance = new object();
@@ -29,7 +29,7 @@ public class Score
         }
     }
 
-    public int GetScore(HandRank forRank)
+    public int GetScoreInfoForARank(HandRank forRank)
     {
         return scoreSet[forRank] * multiplier;
     }

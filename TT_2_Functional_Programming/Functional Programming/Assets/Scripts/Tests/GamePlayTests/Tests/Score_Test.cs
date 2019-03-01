@@ -24,7 +24,7 @@ public class Score_Test {
 
         Score.SharedInstance.ResetScore();
         //Debug.Log(Score.SharedInstance.ToString());
-        Assert.AreEqual(Score.SharedInstance.GetScore(hand.GetHandRank()), Score.SharedInstance.GetScore(HandRank.Pair));
+        Assert.AreEqual(Score.SharedInstance.GetScoreInfoForARank(hand.GetHandRank()), Score.SharedInstance.GetScoreInfoForARank(HandRank.Pair));
 
     }
 
@@ -44,7 +44,7 @@ public class Score_Test {
 
         Score.SharedInstance.ResetScore();
         //Debug.Log(Score.SharedInstance.ToString());
-        Assert.AreEqual(Score.SharedInstance.GetScore(hand.GetHandRank()), Score.SharedInstance.GetScore(HandRank.TwoPair));
+        Assert.AreEqual(Score.SharedInstance.GetScoreInfoForARank(hand.GetHandRank()), Score.SharedInstance.GetScoreInfoForARank(HandRank.TwoPair));
 
     }
 
@@ -64,7 +64,7 @@ public class Score_Test {
 
         Score.SharedInstance.ResetScore();
         //Debug.Log(Score.SharedInstance.ToString());
-        Assert.AreEqual(Score.SharedInstance.GetScore(hand.GetHandRank()), Score.SharedInstance.GetScore(HandRank.ThreeOfAKind));
+        Assert.AreEqual(Score.SharedInstance.GetScoreInfoForARank(hand.GetHandRank()), Score.SharedInstance.GetScoreInfoForARank(HandRank.ThreeOfAKind));
 
     }
 
@@ -84,7 +84,7 @@ public class Score_Test {
 
         Score.SharedInstance.ResetScore();
         //Debug.Log(Score.SharedInstance.ToString());
-        Assert.AreEqual(Score.SharedInstance.GetScore(hand.GetHandRank()), Score.SharedInstance.GetScore(HandRank.FourOfAKind));
+        Assert.AreEqual(Score.SharedInstance.GetScoreInfoForARank(hand.GetHandRank()), Score.SharedInstance.GetScoreInfoForARank(HandRank.FourOfAKind));
 
     }
 
@@ -104,7 +104,7 @@ public class Score_Test {
 
         Score.SharedInstance.ResetScore();
         //Debug.Log(Score.SharedInstance.ToString());
-        Assert.AreEqual(Score.SharedInstance.GetScore(hand.GetHandRank()), Score.SharedInstance.GetScore(HandRank.Straight));
+        Assert.AreEqual(Score.SharedInstance.GetScoreInfoForARank(hand.GetHandRank()), Score.SharedInstance.GetScoreInfoForARank(HandRank.Straight));
 
     }
 
@@ -123,8 +123,8 @@ public class Score_Test {
 
         Score.SharedInstance.SetMultiplierForBetAmmount(2);
 
-        Score.SharedInstance.SetScore(Score.SharedInstance.GetScore(hand.GetHandRank()));
-        int score_1 = Score.SharedInstance.GetScore(HandRank.Straight);
+        Score.SharedInstance.SetScore(Score.SharedInstance.GetScoreInfoForARank(hand.GetHandRank()));
+        int score_1 = Score.SharedInstance.GetScoreInfoForARank(HandRank.Straight);
         Debug.Log(Score.SharedInstance.ToString());
         hand.RemoveAllCardsFromHand();
 
@@ -136,8 +136,8 @@ public class Score_Test {
 
         Score.SharedInstance.SetMultiplierForBetAmmount(5);
 
-        Score.SharedInstance.SetScore(Score.SharedInstance.GetScore(hand.GetHandRank()));
-        int score_2 = Score.SharedInstance.GetScore(HandRank.TwoPair);
+        Score.SharedInstance.SetScore(Score.SharedInstance.GetScoreInfoForARank(hand.GetHandRank()));
+        int score_2 = Score.SharedInstance.GetScoreInfoForARank(HandRank.TwoPair);
         Debug.Log(Score.SharedInstance.ToString());
 
         Assert.AreEqual(Score.SharedInstance.GetCurrentScore(), score_1 + score_2);
