@@ -9,9 +9,9 @@ using System.Text;
 public class DeckInteractor : IInteractor
 {
     private readonly DataCollection dataCollection = new DataCollection();
-    public IEnumerable<Card> Cards { get { return cards; } }
-
     private List<Card> cards = new List<Card>();
+
+    public IEnumerable<Card> Cards { get { return cards; } }
 
     public DeckInteractor()
     {
