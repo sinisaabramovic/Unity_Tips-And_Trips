@@ -8,16 +8,15 @@ using System.Text;
 
 public class Hand : IHand
 {
-    private readonly List<Card> cards = new List<Card>();
-
+    //private readonly List<Card> cards = new List<Card>();
+    private HandInteractor handInteractor;
     #region Public methods
     // to ensure imutability 
-    public IEnumerable<Card> Cards { get { return cards; } }
+    public IEnumerable<Card> Cards { get { return handInteractor.Cards; } }
 
     public Hand()
     {
-        // base constructor 
-        // no implementations
+        handInteractor = new HandInteractor();
     }
 
     public HandRank GetHandRank()
@@ -40,7 +39,7 @@ public class Hand : IHand
     {
         StringBuilder sb = new StringBuilder();
 
-        foreach(Card card in cards)
+        foreach(Card card in handInteractor.Cards.ToList())
         {
             sb.Append(" | " + card.ToString() + " | ");
         }
@@ -50,9 +49,8 @@ public class Hand : IHand
 
     public void Draw(Card card)
     {
-        // ensure early exit if card is in the list
         if (isCardInList(card)) return;
-        cards.Add(card);
+        handInteractor.pushCard(card);
     }
 
     // higher order function 
@@ -64,18 +62,21 @@ public class Hand : IHand
 
     public void RemoveCardFromHand(Card card)
     {
-        if (cards.Count <= 0) return;
-        cards.Remove(card);
+        //if (cards.Count <= 0) return;
+        //cards.Remove(card);
+        if (handInteractor.Cards.Count() <= 0) return;
+        handInteractor.removeCard(card);
     }
 
     public void RemoveAllCardsFromHand()
     {
-        cards.Clear();
+        //cards.Clear();
+        handInteractor.removeAllCards();
     }
 
     public Card HighCard()
     {
-        return cards.Aggregate((highCard, nextCard) => {
+        return handInteractor.Cards.Aggregate((highCard, nextCard) => {
             return nextCard.Value > highCard.Value ? nextCard : highCard;
         });
     }
@@ -85,14 +86,14 @@ public class Hand : IHand
     #region state conditions methods
     private bool HasFlush()
     {
-        return cards.All((c) => {
-            return cards.First().Suit == c.Suit;
+        return handInteractor.Cards.All((c) => {
+            return handInteractor.Cards.First().Suit == c.Suit;
         });
     }
 
     private bool HasRoyalFlush()
     {
-        return HasFlush() && cards.All((c) => {
+        return HasFlush() && handInteractor.Cards.All((c) => {
             return c.Value > CardValue.Nine;
         });
     }
@@ -105,7 +106,7 @@ public class Hand : IHand
     private bool HasTwoPairs()
     {
        
-        return GetTwoPairKindAndQuantites(cards);
+        return GetTwoPairKindAndQuantites();
     }
 
     private bool HasThreeOfAKind()
@@ -125,7 +126,7 @@ public class Hand : IHand
 
     private bool HasOfAKind(int num)
     {
-        return GetKindAndQuantites(cards).Any(c => c.Value == num);
+        return GetKindAndQuantites(handInteractor.Cards).Any(c => c.Value == num);
     }
 
     private bool HasStraightFlush()
@@ -137,7 +138,7 @@ public class Hand : IHand
     #region Compare methods
     private bool isCardInList(Card card)
     {
-        foreach(Card cardModel in cards)
+        foreach(Card cardModel in handInteractor.Cards)
         {
             if (cardModel.isEqual(card))
             {
@@ -160,18 +161,18 @@ public class Hand : IHand
         return dict;
     }
 
-    private bool GetTwoPairKindAndQuantites(IEnumerable<Card> cards)
+    private bool GetTwoPairKindAndQuantites()
     {
 
-        return cards.GroupBy(card => card.Value)
+        return handInteractor.Cards.GroupBy(card => card.Value)
                       .Count(group => group.Count() >= 2) == 2;
 
     }
 
     private bool HasStraight()
     {
-        return cards.OrderBy(card => card.Value)
-                .Zip(cards.OrderBy(card => card.Value).Skip(1), (n, next) => n.Value + 1 == next.Value)
+        return handInteractor.Cards.OrderBy(card => card.Value)
+                .Zip(handInteractor.Cards.OrderBy(card => card.Value).Skip(1), (n, next) => n.Value + 1 == next.Value)
                 .All(value => value /* true */ );
     }
     #endregion

@@ -6,14 +6,14 @@ using System.Linq;
 using Realtime.Messaging.Internal;
 using System.Text;
 
-public class Interactor : IInteractor
+public class DeckInteractor : IInteractor
 {
     private readonly DataCollection dataCollection = new DataCollection();
     public IEnumerable<Card> Cards { get { return cards; } }
 
     private List<Card> cards = new List<Card>();
 
-    public Interactor()
+    public DeckInteractor()
     {
         cards = dataCollection.Data();
     }
@@ -53,5 +53,15 @@ public class Interactor : IInteractor
         }
 
         return throwableCards;
+    }
+
+    public void removeCard(Card card)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void removeAllCards()
+    {
+        throw new NotImplementedException();
     }
 }
