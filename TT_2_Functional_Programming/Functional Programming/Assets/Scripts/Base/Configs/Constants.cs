@@ -8,14 +8,15 @@ public class Constants : IConstants
     private static Constants sharedInstance = null;
     private static readonly object padlockInstance = new object();
 
+    #region init
     private int totalNumberOfCardsInDeck = 52;
     private int maximumNumberOfCardsInHand = 5;
     private int maximumBetAmount = 5;
     private int minimumBetAmount = 1;
     private int resetScoreValue = 0;
     private int nullValue = 0;
-    private int baseMultiplierValue = 1;       
-
+    private int baseMultiplierValue = 1;
+    #endregion
     public static Constants SharedInstance
     {
         get
