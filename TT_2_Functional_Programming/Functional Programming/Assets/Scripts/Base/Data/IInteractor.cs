@@ -4,12 +4,15 @@ using UnityEngine;
 using System;
 using System.Linq;
 using Realtime.Messaging.Internal;
+using System.Text;
 
-public interface IDeck 
+public interface IInteractor  
 {
 
-    Interactor Interactor { get; }
     IEnumerable<Card> Cards { get; }
-    Card ThrowCard();
-    List<Card> ThrowCards(int numberOfCards);
+    List<Card> RandomizeData();
+    Card popCard();
+    List<Card> popCards(int number);
+    void pushCard(Card card);
+
 }
