@@ -10,9 +10,9 @@ public class Hand : IHand
 {
     //private readonly List<Card> cards = new List<Card>();
     private HandInteractor handInteractor;
+    public HandInteractor HandInteractor { get { return handInteractor; } }
+
     #region Public methods
-    // to ensure imutability 
-    public IEnumerable<Card> Cards { get { return handInteractor.Cards; } }
 
     public Hand()
     {

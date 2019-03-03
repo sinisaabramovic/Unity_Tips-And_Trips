@@ -41,7 +41,7 @@ public class DrawCardFromDeck_Test {
         {
             Debug.Log(hand.ToString());
 
-            Assert.AreEqual(hand.Cards.Count(), numberOFClaimedCards);
+            Assert.AreEqual(hand.HandInteractor.Cards.Count(), numberOFClaimedCards);
             return;
         }
 

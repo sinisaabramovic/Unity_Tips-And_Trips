@@ -10,7 +10,7 @@ public class HandModel_Test {
     public void HandModel_TestSimplePasses() {
         // Use the Assert class to test conditions.
         Hand hand = new Hand();
-        Assert.False(hand.Cards.Any());
+        Assert.False(hand.HandInteractor.Cards.Any());
     }
 
     [Test]
@@ -23,7 +23,7 @@ public class HandModel_Test {
 
         Card cardDump = new Card(CardValue.Eight, CardSuit.Spades);
 
-        Assert.AreEqual(hand.Cards.First(), card);
+        Assert.AreEqual(hand.HandInteractor.Cards.First(), card);
     }
 
     [Test]
@@ -41,7 +41,7 @@ public class HandModel_Test {
         hand.Draw(new Card(CardValue.Two, CardSuit.Clubs));
         hand.Draw(new Card(CardValue.Ten, CardSuit.Hearts));
 
-        Assert.AreEqual(hand.Cards.Distinct().Count(), expectedCount);
+        Assert.AreEqual(hand.HandInteractor.Cards.Distinct().Count(), expectedCount);
     }
 
     [Test]
