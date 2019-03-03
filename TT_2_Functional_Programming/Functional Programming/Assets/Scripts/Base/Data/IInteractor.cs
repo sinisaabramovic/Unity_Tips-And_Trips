@@ -12,6 +12,8 @@ public interface IInteractor
     IEnumerable<Card> Cards { get; }
     List<Card> RandomizeData();
     Card popCard();
+    void removeCard(Card card);
+    void removeAllCards();
     List<Card> popCards(int number);
     void pushCard(Card card);
 

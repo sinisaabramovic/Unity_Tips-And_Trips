@@ -8,16 +8,16 @@ using Realtime.Messaging.Internal;
 public class Deck : IDeck
 {
 
-    private readonly Interactor interactor;
+    private readonly DeckInteractor interactor;
     // to ensure imutability 
 
-    public Interactor Interactor { get { return interactor; } }
+    public DeckInteractor Interactor { get { return interactor; } }
 
     public IEnumerable<Card> Cards { get { return interactor.Cards; } }
 
     public Deck()
     {
-        interactor = new Interactor();
+        interactor = new DeckInteractor();
         ShuffleDeck();
     }
 

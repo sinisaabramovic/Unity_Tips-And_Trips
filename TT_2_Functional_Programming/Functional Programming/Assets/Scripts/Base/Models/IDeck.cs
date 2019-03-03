@@ -8,7 +8,7 @@ using Realtime.Messaging.Internal;
 public interface IDeck 
 {
 
-    Interactor Interactor { get; }
+    DeckInteractor Interactor { get; }
     IEnumerable<Card> Cards { get; }
     Card ThrowCard();
     List<Card> ThrowCards(int numberOfCards);
